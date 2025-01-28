@@ -1,0 +1,55 @@
+@model wizard.Models.ProductoInfo2ViewModel
+@{
+    ViewBag.Title = "Laboral Info";
+}
+<h2>Laboral Info</h2>
+@if (ViewData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData["Error"]
+    </div>
+}
+@using (Html.BeginForm("LaboralInfo", "Producto", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>PASO 2: Información detallada del producto</h4>
+        <hr />
+        @Html.ValidationSummary(true, "Corrige los errores a continuación:")
+
+        <!-- Cantidad -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.cantidad, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cantidad, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Fecha de Registro -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_registro, "Fecha de Registro", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fecha_registro, new { type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.fecha_registro, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+    <div>
+        <select id="estado" name="estado" class="form-select" hidden>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
+    </div>
+
+
+        <!-- Botones -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="BtnPrevious" value="Previous" class="btn btn-primary" />
+                <input type="submit" name="BtnNext" value="Finish" class="btn btn-success" />
+                <input type="submit" name="BtnCancel" value="Cancel" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}

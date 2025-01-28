@@ -1,0 +1,40 @@
+@model wizard.Models.ProductoInfoViewModel
+@{
+    ViewBag.Title = "Personal Info";
+}
+
+@using (Html.BeginForm("BasicInfo", "Producto", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>PASO 1: Información básica del producto</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, "Nombre del Producto", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ingresa el nombre del producto" })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.precio, "Precio", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.precio, new { @class = "form-control", placeholder = "Ingresa el precio del producto" })
+                @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+<br>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" name="BtnPrevious" value="Previous" class="btn btn-secondary" readonly />
+                
+                <input type="submit" name="BtnNext" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

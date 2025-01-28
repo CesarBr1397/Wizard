@@ -1,0 +1,45 @@
+@model IEnumerable<wizard.Entities.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Productos</h2>
+
+<a class="btn btn-primary" href="/Producto/Agregar">Agregar</a>
+<br>
+
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Fecha de registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.idproducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.nombre )</td>
+                <td>@Html.DisplayFor(modelItem => item.precio )</td>
+                <td>@Html.DisplayFor(modelItem => item.cantidad )</td>
+                <td>@Html.DisplayFor(modelItem => item.fecha_registro )</td>
+                <td>
+                    @Html.ActionLink("Editar", "Actualizar", new { id = item.idproducto }) |
+                    @Html.ActionLink("Detalles", "Detalles", new { id = item.idproducto }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idproducto })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,36 @@
+@model wizard.Entities.Producto
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Detalles del producto</h2>
+    </div>
+
+    <div class="card-body">
+        <dl class="row">
+
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Model.nombre</dd>
+
+            <dt class="col-sm-3">Precio</dt>
+            <dd class="col-sm-9">@Model.precio</dd>
+
+                        <dt class="col-sm-3">Cantidad</dt>
+            <dd class="col-sm-9">@Model.cantidad</dd>
+
+            <dt class="col-sm-3">Fecha de Registro</dt>
+            <dd class="col-sm-9">@Model.fecha_registro.ToString()</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer">
+        <a href="@Url.Action("Index", "Producto")" class="btn btn-primary">Volver</a>
+    </div>
+</div>

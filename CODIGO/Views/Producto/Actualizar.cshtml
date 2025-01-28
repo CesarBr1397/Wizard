@@ -1,0 +1,52 @@
+@model wizard.Entities.Producto
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Actualizar Producto</h1>
+
+<div class="card">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <form action="/Producto/Update" method="post">
+
+            <input type="hidden" name="idproducto" value="@Model.idproducto" />
+
+            <div class="form-group mb-3">
+                <label for="nombre">Nombre:</label>
+                <input value="@Model.nombre" type="text" name="nombre" class="form-control"/>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="precio">Precio:</label>
+                <input type="number" value="@Model.precio" name="precio" class="form-control">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" value="@Model.cantidad" name="cantidad" class="form-control"/>
+            </div>
+
+<div class="form-group mb-3">
+    <label for="fecha_registro">Fecha de registro:</label>
+    <input type="date" value="@(Model.fecha_registro?.ToString("yyyy-MM-dd") ?? "")" name="fecha_registro" class="form-control" />
+</div> 
+
+    <div>
+        <select id="estado" name="estado" class="form-select" hidden>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
+    </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="@Url.Action("Index", "Producto")" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
